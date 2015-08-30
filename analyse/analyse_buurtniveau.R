@@ -12,7 +12,7 @@ buurtvars <- names(buurtgegevens)[-1]
 data$geoid <- as.integer(substr(data$buurt_code, 7, 9))
 data <- merge(data, buurtgegevens, all.x=TRUE, by.x="geoid", by.y="GEOITEM")
 
-add_one <- function(variable, data) {
+add_one <- function(variable, data, predictors) {
  
   formula0 <- as.formula(paste0(variable, " ~ 1"))
   model0 <- lm(formula0, data=data)
@@ -53,6 +53,7 @@ add_one <- function(variable, data) {
   regression_results
 }
 
+regression_results <- add_one("index_nodig", data, buurtvars)
 
 
 write.csv(regression_results, "regression_results1_nodig.csv", row.names=FALSE,
