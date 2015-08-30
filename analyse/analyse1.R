@@ -65,8 +65,14 @@ res2 <- group_by(data_zorg, buurt) %>% summarise(ondersteuning_krijg = sum(onder
 
 res <- full_join(res, res2)
 
+# Add buurt codes
+buurt <- read.csv("index_codes.csv", stringsAsFactors=FALSE)
+m <- match(res$buurt, buurt$buurt)
+res$buurt_code <- buurt$Codering_3[m]
 
-write.csv(res, "index.csv", row.names=FALSE)
+write.csv(res, "index.csv", row.names=FALSE, na = "")
 
+symbols(res$index_nodig, res$index_krijg, res$ondersteuning_nodig, inches = 0.3,
+  bg=rgb(150/255, 20/255, 50/255, 0.6))
 
 
