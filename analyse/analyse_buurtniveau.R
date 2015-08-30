@@ -17,7 +17,7 @@ add_one <- function(variable, data, predictors) {
   formula0 <- as.formula(paste0(variable, " ~ 1"))
   model0 <- lm(formula0, data=data)
   
-  formula_to_add <- as.formula(paste0(". ~ ", paste(buurtvars, collapse=" + ")))
+  formula_to_add <- as.formula(paste0(". ~ ", paste(predictors, collapse=" + ")))
   res <- add1(model0, formula_to_add, test="Chisq")
   
   
@@ -40,6 +40,7 @@ add_one <- function(variable, data, predictors) {
   # add coefficients to table
   regression_results$a <- NA
   regression_results$b <- NA
+  regression_results$rsq <- NA
   
   for (i in seq_len(nrow(regression_results))) {
     var <- regression_results$variable[i]
@@ -48,17 +49,20 @@ add_one <- function(variable, data, predictors) {
     m <- update(model0, f)
     regression_results$a[i] <- coef(m)[1]
     regression_results$b[i] <- coef(m)[2]
+    regression_results$rsq[i] <- summary(m)$r.squared
   }
   
   regression_results
 }
 
-regression_results <- add_one("index_nodig", data, buurtvars)
+regression_results_nodig <- add_one("index_nodig", data, buurtvars)
+regression_results_krijg <- add_one("index_krijg", data, buurtvars)
 
 
-write.csv(regression_results, "regression_results1_nodig.csv", row.names=FALSE,
+write.csv(regression_results_nodig, "regression_results1_nodig.csv", row.names=FALSE,
   na="")
-
+write.csv(regression_results_krijg, "regression_results1_krijg.csv", row.names=FALSE,
+  na="")
 
 
 # ==============================================================================
