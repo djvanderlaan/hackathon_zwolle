@@ -59,6 +59,8 @@ regression_results_nodig <- add_one("index_nodig", data, buurtvars)
 regression_results_krijg <- add_one("index_krijg", data, buurtvars)
 
 
+write.csv(data, "index_achterground.csv", row.names=FALSE, na="")
+
 write.csv(regression_results_nodig, "regression_results1_nodig.csv", row.names=FALSE,
   na="")
 write.csv(regression_results_krijg, "regression_results1_krijg.csv", row.names=FALSE,
