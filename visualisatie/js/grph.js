@@ -4957,7 +4957,6 @@ function grph_graph_bubble() {
         schema.fields[1].title + ":" + Math.round(d[schema.fields[1].name], 2) + "<br/>" +
         schema.fields[2].title + ":" + d[schema.fields[2].name] + "<br/>";
 
-      return str;
     });
     dispatch.on("ready.tip", function() {
       this.call(tip);

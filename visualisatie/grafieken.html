@@ -71,37 +71,41 @@
     <script src="js/d3.v3.min.js"></script>
     <script src="js/d3-tip.js"></script>
     <script src="js/colorbrewer.js"></script>
-    <script src="js/map.js"></script>
     <script src="js/grph.js"></script>
+    <script src="js/map.js"></script>
     <script src="js/bubble.js"></script>
 
     <script>
 
       var height = 600;
       var width = 800;
-      var variable = "index_krijg"
+      var variable = "index_krijg";
 
       var vis = d3.select("#map").append("svg")
         .attr("width", width).attr("height", height)
 
-      var map_grph = Map(vis).width(width).height(height);
+      var map_grph = Map(vis).width(width).height(height).vr(variable);
 
 
       d3.json("map/bu_2014.json", function(map) {
 
         d3.csv("data/index.csv", function(error, d) {
-          map_grph.vr(variable);
           map_grph.data(d);
           map_grph.mp(map);
           map_grph.draw();
         });
       });
+    </script>
+
+    <script>
+      var height = 600;
+      var width = 800;
       
 
-      var vis = d3.select("#bubble").append("svg")
+      var vis2 = d3.select("#bubble").append("svg")
         .attr("width", width).attr("height", height)
 
-      var bubble = Bubble(vis).width(width).height(height);
+      var bubble = Bubble(vis2).width(width).height(height);
 
       d3.csv("data/index_achterground.csv", function(error, d) {
         bubble.vr1("index_nodig", "index_nodig").vr2("bsp0_11","foo")

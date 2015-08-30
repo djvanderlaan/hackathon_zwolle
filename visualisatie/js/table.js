@@ -1,31 +1,71 @@
-var index, zorg_nodig, zorg_krijg;
+var index, zorg_nodig, zorg_krijg, index_achtergrond, map;
+var variable = "index_krijg";
+var map_grph, bubble;
+var bubblevar;
+
 queue()
-    .defer(d3.csv,"./data/index.csv")
+    .defer(d3.csv,"./data/index_achterground.csv")
     .defer(d3.csv, "./data/regression_results1_krijg.csv")
     .defer(d3.csv, "./data/regression_results1_nodig.csv")
-    .await(function(error, file1, file2, file3) {
+    .defer(d3.json, "./map/bu_2014.json")
+    .await(function(error, file1, file2, file3, file4) {
       index = file1;
       zorg_nodig = file2;
       zorg_krijg = file3;
+      map = file4;
       fillTable(zorg_nodig, "#p1", 0);
       fillTable(zorg_nodig, "#p2", 50);
       fillTable(zorg_nodig, "#p3", 100);
       fillTable(zorg_nodig, "#p4", 150);
+
+      var height = 600;
+      var width = 800;
+      variable = "index_krijg";
+
+      var vis = d3.select("#map").append("svg")
+        .attr("width", width).attr("height", height)
+      var vis2 = d3.select("#bubble").append("svg")
+        .attr("width", width).attr("height", height)
+      map_grph = Map(vis).width(width).height(height).vr(variable);
+      bubble = Bubble(vis2).width(width).height(height);
+      bubblevar = "bsp0_11";
     
      $("#krijgt_zorg").on('change', function () {
+        variabele = "index_krijg";
         fillTable(zorg_krijg, "#p1", 0);
         fillTable(zorg_krijg, "#p2", 50);
         fillTable(zorg_krijg, "#p3", 100);
         fillTable(zorg_krijg, "#p4", 150);
+        draw_map("index_krijg");
+        draw_bubble("index_krijg");
+
       });
     $('#zorg_nodig').on('change', function () {
+        variabele = "index_nodig";
         fillTable(zorg_nodig, "#p1", 0);
         fillTable(zorg_nodig, "#p2", 50);
         fillTable(zorg_nodig, "#p3", 100);
         fillTable(zorg_nodig, "#p4", 150);    
+        draw_map("index_nodig");
+        draw_bubble("index_nodig");
       }).click();
 
     });
+
+function draw_map(variable) {
+$("#map>svg").empty();
+console.log(variable);
+          map_grph.vr(variable).data(index);
+          map_grph.mp(map);
+          map_grph.draw();
+}
+
+function draw_bubble(variable) {
+$("#bubble>svg").empty();
+  bubble.vr1(variable, variable).vr2(bubblevar,bubblevar)
+    .size("ondersteuning_nodig", "Ondersteuning nodig")
+    .data(index).draw();
+}
 
 function signif (s) {
   if ( s < 0.0001) return "***";
@@ -44,11 +84,15 @@ function hooglaag (b) {
 
 function fillTable(data, tab, start) {
     $(tab + " .table").empty();
-    $(tab + " .table").html('<thead><tr><th>Variable</th><th>R-square</th><th>Sig.</th><th></th></tr></thead>')
+    $(tab + " .table").html('<tr><th>Variable</th><th>R-square</th><th>Sig.</th><th></th></tr>')
     data.slice(start,start+50).forEach(function (row) {
         $(tab + " .table").append(
-          "<tr><td>" + row.variable_name + "</td><td>" +
+          "<tr class=\"rrow\" data-variable=\"" + row.variable + "\"><td>" + row.variable_name + "</td><td>" +
           Math.round(row.rsq * 100) / 100 + "</td><td>" + signif(row.p) + "</td><td>"+
           hooglaag(row.b) + "</td></tr>")
       })  
+    $("tr.rrow").click(function() {
+      bubblevar = $(this).data().variable;
+      draw_bubble(variable);
+    });
 }
