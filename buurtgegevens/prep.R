@@ -27,4 +27,7 @@ for (file in files) {
 
 for (col in names(buurtgegevens)) {
   buurtgegevens[[col]][buurtgegevens[[col]] < -99990] <- NA
+  if (all(is.na(buurtgegevens[[col]]))) buurtgegevens[[col]] <- NULL
 }
+
+write.csv(buurtgegevens, "buurtgegevens.csv", row.names=FALSE)
