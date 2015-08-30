@@ -5,7 +5,7 @@
         var data;
         var variable1, variable2;
         var name1, name2;
-        var size, namesize;
+        var sze, namesize;
 
         bubble.data = function(d) {
           data = d;
@@ -30,7 +30,7 @@
         }
 
         bubble.size = function(s, n) {
-          size = s;
+          sze = s;
           namesize = n;
           return this;
         }
@@ -47,7 +47,7 @@
               { 'name' : 'buurt', 'title': 'Buurt', 'description': '', 'type': 'string'},
               { 'name' : variable1, 'title' : name1, 'description': '', 'type': 'number'},
               { 'name' : variable2, 'title' : name2, 'description': '', 'type': 'number'},
-              { 'name' : size, 'title' : namesize, 'description': '', 'type': 'number'}
+              { 'name' : sze, 'title' : namesize, 'description': '', 'type': 'number'}
             ]
           };
 
@@ -57,7 +57,7 @@
             'y' : variable2,
             'object' : 'buurt'
           };
-          if (size) mapping.size = size;
+          if (sze) mapping.size = sze;
 
           g.width(width).height(height).schema(schema).assign(mapping)
             .data(data);

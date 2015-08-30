@@ -64,6 +64,7 @@ function draw_bubble(variable) {
 $("#bubble>svg").empty();
   bubble.vr1(variable, variable).vr2(bubblevar,bubblevar)
     .size("ondersteuning_nodig", "Ondersteuning nodig")
+    //.size(variable, variable)
     .data(index).draw();
 }
 
