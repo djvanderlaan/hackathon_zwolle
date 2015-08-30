@@ -1,70 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Buurt Zorgvraag index</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-  </head>
-  <body>
-    <div class="container">
-      <h1>Hello, world!</h1>
-      <hr/>
+  <title>Buurt Zorgvraag index</title>
 
-      <div class="row">
-        <div class="col-md-3">
-          Uitleg
-        </div>
-        <div class="col-md-9">
-          <div class="map"> </div>
-          Kaart
-        </div>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <hr/>
+    <div class="btn-group" data-toggle="buttons">
+      <label class="btn btn-primary">
+        <input type="radio" name="options" id="zorg_nodig" autocomplete="off" checked> Heeft zorg nodig
+      </label>
+      <label class="btn btn-primary active">
+        <input type="radio" name="options" id="krijgt_zorg" autocomplete="off"> Krijgt zorg
+      </label>
+    </div>
+    <hr/>
+
+    <div class="row">
+      <div class="col-md-3">
+        Uitleg
       </div>
-
-      <hr/>
-
-      <div class="row">
-        <div class="col-md-3">
-           <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#p1" aria-controls="home" role="tab" data-toggle="tab">1</a></li>
-            <li role="presentation"><a href="#p2" aria-controls="profile" role="tab" data-toggle="tab">1</a></li>
-            <li role="presentation"><a href="#p3" aria-controls="messages" role="tab" data-toggle="tab">3</a></li>
-            <li role="presentation"><a href="#p4" aria-controls="settings" role="tab" data-toggle="tab">4</a></li>
-          </ul>
-
-          <!-- Tab panes -->
-          <div class="tab-content">
-            <div role="tabpanel" class="tab-pane active" id="p1">
-              <table class="table">
-                <thead>
-                  <tr><th>Variable</th><th>R-square</th><th>Sig.</th><th></th></tr>
-                </thead>
-                <body>
-                  <tr><td>var1</td><td>0.2</td><td>**</td><td><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></td></tr>
-                </body>
-              </table>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="p2">...</div>
-            <div role="tabpanel" class="tab-pane" id="p3">...</div>
-            <div role="tabpanel" class="tab-pane" id="p4">...</div>
-          </div>
-
-        </div>
-        <div class="col-md-9">
-          <div class="bubble"></div>
-          Bubble
-        </div>
+      <div class="col-md-9">
+        <div id="map"> </div>
+        Kaart
       </div>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="js/d3.v3.min.js"></script>
-    <script src="js/colorbrewer.js"></script>
-  </body>
+    <hr/>
+
+    <div class="row">
+      <div class="col-md-3">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li role="presentation" class="active"><a href="#p1" aria-controls="home" role="tab" data-toggle="tab">1</a></li>
+          <li role="presentation"><a href="#p2" aria-controls="profile" role="tab" data-toggle="tab">2</a></li>
+          <li role="presentation"><a href="#p3" aria-controls="messages" role="tab" data-toggle="tab">3</a></li>
+          <li role="presentation"><a href="#p4" aria-controls="settings" role="tab" data-toggle="tab">4</a></li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+          <div role="tabpanel" class="tab-pane active" id="p1">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>R-square</th>
+                  <th>Sig.</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <body>
+              </body>
+            </table>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="p2">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>R-square</th>
+                  <th>Sig.</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <body>
+              </body>
+            </table>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="p3">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>R-square</th>
+                  <th>Sig.</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <body>
+              </body>
+            </table>
+          </div>
+          <div role="tabpanel" class="tab-pane" id="p4">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Variable</th>
+                  <th>R-square</th>
+                  <th>Sig.</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <body>
+              </body>
+            </table>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-9">
+        <div id="bubble"></div>
+        Bubble
+      </div>
+    </div>
+  </div>
+
+  <script src="js/jquery-1.11.3.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+  <script src="js/d3.v3.min.js"></script>
+  <script src="http://d3js.org/queue.v1.min.js"></script>
+  <script src="js/colorbrewer.js"></script>
+  <script src="js/table.js"></script>
+</body>
+
 </html>
