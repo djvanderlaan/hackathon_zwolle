@@ -50,7 +50,6 @@
               { 'name' : sze, 'title' : namesize, 'description': '', 'type': 'number'}
             ]
           };
-
           var g = grph.bubble();
           var mapping = {
             'x' : variable1,

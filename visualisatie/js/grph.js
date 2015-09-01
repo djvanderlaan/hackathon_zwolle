@@ -4954,7 +4954,7 @@ function grph_graph_bubble() {
         //str += field.title + ': ' + format(d, field.name) + '</br>';
       }
       return "<b>" + d.buurt + "</b><br/>" + 
-        schema.fields[1].title + ":" + Math.round(d[schema.fields[1].name], 2) + "<br/>" +
+        schema.fields[1].title + ":" + Math.round(d[schema.fields[1].name]*100)/100 + "<br/>" +
         schema.fields[2].title + ":" + d[schema.fields[2].name] + "<br/>";
 
     });
