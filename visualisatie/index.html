@@ -1,24 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Buurt Zorgvraag index</title>
 
-  <title>Buurt Zorgvraag index</title>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/light.css">
-  <style>
-    body {
-     margin: 10px 40px;
-    }
-  </style>
-</head>
 
-<body>
+    <style>
+      body {
+       margin: 10px 40px;
+      }
+      tr.rrow.selected {
+        background: rgb(240, 240, 240);
+        color: rgb(80, 80, 150);
+      }
+      tr:hover, tr.selected {
+        background: rgb(200,200,200);
+        cursor: pointer;
+      }
+      tr.rrow.selected:hover {
+        background: rgb(200, 200, 200);
+      }
+      #map path {
+        stroke: rgb(0, 0, 0);
+        stroke-opacity: 0.1;
+      } 
+      #map path:hover {
+        stroke-opacity: 1;
+        stroke : rgb(120, 120, 120);
+      }
+    </style>
+  </head>
+
+  <body>
     <h1>Index home care</h1>
     <hr/>
     <div class="btn-group" data-toggle="buttons">
@@ -32,9 +51,9 @@
     <hr/>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
       </div>
-      <div class="col-md-9">
+      <div class="col-md-8">
         <div id="map"> </div>
       </div>
     </div>
@@ -42,7 +61,7 @@
     <hr/>
 
     <div class="row">
-      <div class="col-md-3">
+      <div class="col-md-4">
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
           <li role="presentation" class="active"><a href="#p1" aria-controls="home" role="tab" data-toggle="tab">1</a></li>
@@ -116,7 +135,7 @@
         </div>
 
       </div>
-      <div class="col-md-9">
+      <div class="col-md-8">
         <div id="bubble"></div>
       </div>
     </div>
@@ -125,7 +144,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
   <script src="js/d3.v3.min.js"></script>
   <script src="js/d3-tip.js"></script>
-  <script src="http://d3js.org/queue.v1.min.js"></script>
+  <script src="js/queue.v1.min.js"></script>
   <script src="js/colorbrewer.js"></script>
   <script src="js/grph.js"></script>
   <script src="js/map.js"></script>

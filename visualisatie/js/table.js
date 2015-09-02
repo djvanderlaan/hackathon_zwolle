@@ -84,7 +84,6 @@ function hooglaag (b) {
 }
 
 function fillTable(data, tab, start) {
-    console.log(data);
     $(tab + " .table").empty();
     $(tab + " .table").html('<tr><th>Variable</th><th>R-square</th><th>Sig.</th><th></th></tr>')
     data.slice(start,start+50).forEach(function (row) {
@@ -94,8 +93,9 @@ function fillTable(data, tab, start) {
           hooglaag(row.b) + "</td></tr>")
       })  
     $("tr.rrow").click(function() {
+      $("tr.rrow").removeClass("selected");
+      $(this).addClass("selected");
       bubblevar = $(this).data().variable;
-      console.log(variable_table);
       draw_bubble(variable_table);
     });
 }
