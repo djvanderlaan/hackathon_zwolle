@@ -4955,7 +4955,7 @@ function grph_graph_bubble() {
       }
       return "<b>" + d.buurt + "</b><br/>" + 
         schema.fields[1].title + ":" + Math.round(d[schema.fields[1].name]*100)/100 + "<br/>" +
-        schema.fields[2].title + ":" + d[schema.fields[2].name] + "<br/>";
+        schema.fields[2].title + ":" + Math.round(d[schema.fields[2].name]*100)/100 + "<br/>";
 
     });
     dispatch.on("ready.tip", function() {
