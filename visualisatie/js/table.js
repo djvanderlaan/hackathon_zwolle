@@ -33,6 +33,7 @@ queue()
         draw_bubble("index_krijg");
     
      $("#krijgt_zorg").on('change', function () {
+        $("h1").text("Personen die thuiszorg krijgen als ze aangeven het nodig te hebben");
         variable_table = "index_krijg";
         fillTable(zorg_krijg, "#p1", 0);
         fillTable(zorg_krijg, "#p2", 50);
@@ -42,6 +43,7 @@ queue()
         draw_bubble("index_krijg");
       }).click();
     $('#zorg_nodig').on('change', function () {
+        $("h1").text("Personen die aangeven thuiszorg nodig te hebben");
         variable_table = "index_nodig";
         fillTable(zorg_nodig, "#p1", 0);
         fillTable(zorg_nodig, "#p2", 50);
