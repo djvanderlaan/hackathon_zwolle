@@ -30,9 +30,8 @@ queue()
       draw_map(variable_table);
       bubble = Bubble(vis2).width(width).height(height);
       bubblevar = "bsp0_11";
-        draw_bubble("index_krijg");
     
-     $("#krijgt_zorg").on('change', function () {
+      $("#krijgt_zorg").on('change', function () {
         $("h1").text("Personen die thuiszorg krijgen als ze aangeven het nodig te hebben");
         variable_table = "index_krijg";
         fillTable(zorg_krijg, "#p1", 0);
@@ -40,9 +39,9 @@ queue()
         fillTable(zorg_krijg, "#p3", 100);
         fillTable(zorg_krijg, "#p4", 150);
         draw_map("index_krijg");
-        draw_bubble("index_krijg");
+        $("tr.rrow", $("#p1")).first().click();
       }).click();
-    $('#zorg_nodig').on('change', function () {
+     $('#zorg_nodig').on('change', function () {
         $("h1").text("Personen die aangeven thuiszorg nodig te hebben");
         variable_table = "index_nodig";
         fillTable(zorg_nodig, "#p1", 0);
@@ -50,7 +49,7 @@ queue()
         fillTable(zorg_nodig, "#p3", 100);
         fillTable(zorg_nodig, "#p4", 150);    
         draw_map("index_nodig");
-        draw_bubble("index_nodig");
+        $("tr.rrow", $("#p1")).first().click();
       });
 
     });
@@ -62,11 +61,10 @@ $("#map>svg").empty();
           map_grph.draw();
 }
 
-function draw_bubble(variable) {
+function draw_bubble(variable, name) {
 $("#bubble>svg").empty();
-  bubble.vr2(variable, variable).vr1(bubblevar,bubblevar)
+  bubble.vr2(variable, name).vr1(bubblevar,bubblevar)
     .size("ondersteuning_nodig", "Ondersteuning nodig")
-    //.size(variable, variable)
     .data(index).draw();
 }
 
@@ -98,6 +96,7 @@ function fillTable(data, tab, start) {
       $("tr.rrow").removeClass("selected");
       $(this).addClass("selected");
       bubblevar = $(this).data().variable;
-      draw_bubble(variable_table);
+      var name = $("td", this).first().text();
+      draw_bubble(variable_table, name);
     });
 }
